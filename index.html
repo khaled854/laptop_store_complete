@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:#0a0a0f;color:#e8e8f0;min-height:100vh;overflow-x:hidden}
+:root{
+--gold:#f0c040;--gold2:#e8a820;--dark:#0a0a0f;--card:#13131e;--card2:#1a1a28;
+--border:#2a2a40;--text:#e8e8f0;--muted:#8888aa;--green:#22c55e;--red:#ef4444;--blue:#3b82f6
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#13131e}
+::-webkit-scrollbar-thumb{background:#f0c040;border-radius:3px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid #2a2a40;padding:0 2rem}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;gap:1rem}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#f0c040,#e8a820);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text{font-size:1.4rem;font-weight:800;color:#f0c040;letter-spacing:-0.5px}
+.logo-sub{font-size:0.7rem;color:#8888aa;display:block;margin-top:-4px;font-weight:400}
+nav .links{display:flex;gap:0.5rem}
+nav .links a{color:#8888aa;text-decoration:none;font-size:0.9rem;padding:6px 14px;border-radius:8px;transition:all 0.2s;font-weight:500}
+nav .links a:hover,nav .links a.active{color:#f0c040;background:rgba(240,192,64,0.1)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.cart-btn{background:rgba(240,192,64,0.15);border:1px solid rgba(240,192,64,0.4);color:#f0c040;padding:8px 18px;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:all 0.2s}
+.cart-btn:hover{background:rgba(240,192,64,0.25)}
+.cart-count{background:#f0c040;color:#0a0a0f;border-radius:50%;width:20px;height:20px;font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.whatsapp-nav{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:none;padding:8px 18px;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:all 0.2s}
+.whatsapp-nav:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(37,211,102,0.4)}
+
+/* HERO */
+.hero{max-width:1400px;margin:0 auto;padding:4rem 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(240,192,64,0.1);border:1px solid rgba(240,192,64,0.3);color:#f0c040;padding:6px 14px;border-radius:100px;font-size:0.82rem;font-weight:600;margin-bottom:1.2rem}
+.hero h1{font-size:3rem;font-weight:900;line-height:1.15;margin-bottom:1rem}
+.hero h1 span{color:#f0c040}
+.hero p{color:#8888aa;font-size:1.05rem;line-height:1.8;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2rem}
+.stat{text-align:center}
+.stat-num{font-size:1.6rem;font-weight:800;color:#f0c040}
+.stat-label{font-size:0.78rem;color:#8888aa;margin-top:2px}
+.hero-img{position:relative}
+.hero-laptop-card{background:linear-gradient(135deg,#13131e,#1a1a28);border:1px solid #2a2a40;border-radius:20px;padding:2rem;text-align:center;position:relative;overflow:hidden}
+.hero-laptop-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(240,192,64,0.06) 0%,transparent 60%)}
+.laptop-emoji{font-size:5rem;margin-bottom:1rem;display:block}
+.featured-badge{background:linear-gradient(135deg,#f0c040,#e8a820);color:#0a0a0f;padding:4px 14px;border-radius:100px;font-size:0.78rem;font-weight:800;display:inline-block;margin-bottom:0.8rem}
+.hero-laptop-name{font-size:1.2rem;font-weight:700;margin-bottom:0.5rem}
+.hero-laptop-price{font-size:2rem;font-weight:900;color:#f0c040}
+.hero-laptop-price span{font-size:1rem;color:#8888aa;font-weight:400}
+
+/* SECTIONS */
+section{max-width:1400px;margin:0 auto;padding:2rem 2rem}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.section-title{font-size:1.5rem;font-weight:800;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:24px;background:linear-gradient(#f0c040,#e8a820);border-radius:2px;display:inline-block}
+.view-all{color:#f0c040;background:none;border:1px solid rgba(240,192,64,0.3);padding:6px 16px;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.85rem;font-weight:600;transition:all 0.2s}
+.view-all:hover{background:rgba(240,192,64,0.1)}
+
+/* FILTERS */
+.filters{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+.filter-btn{background:#13131e;border:1px solid #2a2a40;color:#8888aa;padding:7px 18px;border-radius:100px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.85rem;font-weight:600;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:rgba(240,192,64,0.15);border-color:rgba(240,192,64,0.5);color:#f0c040}
+
+/* GRID */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+
+/* PRODUCT CARD */
+.product-card{background:#13131e;border:1px solid #2a2a40;border-radius:16px;overflow:hidden;transition:all 0.3s;cursor:pointer;position:relative}
+.product-card:hover{transform:translateY(-4px);border-color:rgba(240,192,64,0.4);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.card-img{background:linear-gradient(135deg,#1a1a28,#0f0f18);padding:1.5rem;text-align:center;position:relative;font-size:4rem;height:140px;display:flex;align-items:center;justify-content:center}
+.card-badges{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px}
+.badge{padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:700}
+.badge-new{background:rgba(59,130,246,0.2);color:#60a5fa;border:1px solid rgba(59,130,246,0.3)}
+.badge-hot{background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+.badge-sale{background:rgba(240,192,64,0.2);color:#f0c040;border:1px solid rgba(240,192,64,0.3)}
+.badge-best{background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.3)}
+.card-body{padding:1rem}
+.card-brand{font-size:0.75rem;color:#8888aa;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.card-name{font-size:0.95rem;font-weight:700;margin-bottom:6px;line-height:1.4}
+.card-specs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.8rem}
+.spec-tag{background:#1a1a28;color:#8888aa;padding:2px 8px;border-radius:6px;font-size:0.72rem;font-weight:500}
+.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #2a2a40;padding-top:0.8rem;margin-top:0.5rem}
+.price-box{}
+.old-price{font-size:0.78rem;color:#8888aa;text-decoration:line-through}
+.new-price{font-size:1.2rem;font-weight:800;color:#f0c040}
+.currency{font-size:0.8rem;color:#8888aa}
+.add-cart{background:linear-gradient(135deg,#f0c040,#e8a820);color:#0a0a0f;border:none;padding:8px 16px;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.82rem;font-weight:700;transition:all 0.2s;display:flex;align-items:center;gap:5px}
+.add-cart:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(240,192,64,0.4)}
+.add-cart.added{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.rating{display:flex;align-items:center;gap:4px;margin-bottom:6px}
+.stars{color:#f0c040;font-size:0.8rem}
+.rating-num{font-size:0.78rem;color:#8888aa}
+.stock-status{font-size:0.72rem;font-weight:600}
+.in-stock{color:#22c55e}
+.low-stock{color:#f59e0b}
+.out-stock{color:#ef4444}
+
+/* FEATURES */
+.features-bar{background:#13131e;border-top:1px solid #2a2a40;border-bottom:1px solid #2a2a40;padding:1.2rem 2rem;margin:1rem 0}
+.features-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.feature{display:flex;align-items:center;gap:12px}
+.feature-icon{font-size:1.5rem}
+.feature-text{font-size:0.82rem}
+.feature-title{font-weight:700;color:#e8e8f0}
+.feature-sub{color:#8888aa}
+
+/* BRANDS */
+.brands-strip{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.brand-card{background:#13131e;border:1px solid #2a2a40;border-radius:12px;padding:0.6rem 1.2rem;font-size:0.9rem;font-weight:700;color:#8888aa;cursor:pointer;transition:all 0.2s}
+.brand-card:hover,.brand-card.active{background:rgba(240,192,64,0.1);border-color:rgba(240,192,64,0.4);color:#f0c040}
+
+/* CART SIDEBAR */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(4px)}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-sidebar{position:fixed;left:0;top:0;height:100%;width:400px;background:#13131e;z-index:1000;transform:translateX(-100%);transition:transform 0.3s;border-right:1px solid #2a2a40;display:flex;flex-direction:column}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-head{padding:1.5rem;border-bottom:1px solid #2a2a40;display:flex;align-items:center;justify-content:space-between}
+.cart-head h3{font-size:1.1rem;font-weight:700}
+.close-btn{background:none;border:1px solid #2a2a40;color:#8888aa;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.close-btn:hover{border-color:#f0c040;color:#f0c040}
+.cart-items{flex:1;overflow-y:auto;padding:1rem}
+.cart-item{display:flex;gap:12px;background:#1a1a28;border:1px solid #2a2a40;border-radius:12px;padding:12px;margin-bottom:10px;position:relative}
+.cart-item-emoji{font-size:2rem;min-width:50px;text-align:center}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:0.85rem;font-weight:700;margin-bottom:4px;line-height:1.3}
+.cart-item-brand{font-size:0.72rem;color:#8888aa;margin-bottom:6px}
+.cart-item-price{font-size:0.95rem;font-weight:800;color:#f0c040}
+.cart-qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty-btn{background:#2a2a40;border:none;color:#e8e8f0;width:26px;height:26px;border-radius:6px;cursor:pointer;font-size:0.9rem;font-family:'Cairo',sans-serif;transition:all 0.2s}
+.qty-btn:hover{background:#f0c040;color:#0a0a0f}
+.qty-num{font-size:0.9rem;font-weight:700;min-width:20px;text-align:center}
+.remove-item{position:absolute;top:8px;left:8px;background:none;border:none;color:#8888aa;cursor:pointer;font-size:0.9rem;transition:color 0.2s}
+.remove-item:hover{color:#ef4444}
+.empty-cart{text-align:center;padding:3rem 1rem;color:#8888aa}
+.empty-cart-icon{font-size:3rem;margin-bottom:1rem;display:block}
+.cart-footer{padding:1.5rem;border-top:1px solid #2a2a40}
+.cart-summary-row{display:flex;justify-content:space-between;font-size:0.85rem;color:#8888aa;margin-bottom:8px}
+.cart-total-row{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:800;color:#f0c040;margin:12px 0}
+.checkout-btn{width:100%;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:none;padding:14px;border-radius:12px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;margin-bottom:8px}
+.checkout-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(37,211,102,0.4)}
+.continue-btn{width:100%;background:none;border:1px solid #2a2a40;color:#8888aa;padding:10px;border-radius:12px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s}
+.continue-btn:hover{border-color:#f0c040;color:#f0c040}
+
+/* COMPARE BAR */
+.compare-bar{position:fixed;bottom:0;left:0;right:0;background:#13131e;border-top:2px solid #f0c040;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;z-index:200;transform:translateY(100%);transition:transform 0.3s}
+.compare-bar.show{transform:translateY(0)}
+.compare-items{display:flex;gap:8px;flex:1}
+.compare-item{background:#1a1a28;border:1px solid #2a2a40;border-radius:8px;padding:6px 12px;font-size:0.82rem;display:flex;align-items:center;gap:6px}
+.compare-now{background:linear-gradient(135deg,#f0c040,#e8a820);color:#0a0a0f;border:none;padding:8px 20px;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.9rem;font-weight:700}
+.clear-compare{background:none;border:1px solid #2a2a40;color:#8888aa;padding:8px 14px;border-radius:10px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.85rem;font-weight:600;transition:all 0.2s}
+.clear-compare:hover{border-color:#ef4444;color:#ef4444}
+
+/* SEARCH BAR */
+.search-container{max-width:600px;margin:0 auto 2rem;position:relative}
+.search-input{width:100%;background:#13131e;border:1px solid #2a2a40;color:#e8e8f0;padding:12px 50px 12px 20px;border-radius:14px;font-family:'Cairo',sans-serif;font-size:0.95rem;outline:none;transition:all 0.2s}
+.search-input:focus{border-color:rgba(240,192,64,0.5);box-shadow:0 0 0 3px rgba(240,192,64,0.1)}
+.search-input::placeholder{color:#8888aa}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.1rem;color:#8888aa}
+
+/* TOAST */
+.toast{position:fixed;top:80px;right:20px;background:#13131e;border:1px solid rgba(240,192,64,0.4);color:#f0c040;padding:12px 20px;border-radius:12px;font-size:0.9rem;font-weight:600;z-index:9999;transform:translateX(200%);transition:transform 0.3s;display:flex;align-items:center;gap:8px}
+.toast.show{transform:translateX(0)}
+
+/* PROMO BANNER */
+.promo-banner{background:linear-gradient(135deg,rgba(240,192,64,0.15),rgba(232,168,32,0.08));border:1px solid rgba(240,192,64,0.3);border-radius:16px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.promo-text{font-size:0.95rem;font-weight:600}
+.promo-text span{color:#f0c040}
+.promo-code{background:rgba(240,192,64,0.15);border:1px dashed rgba(240,192,64,0.5);color:#f0c040;padding:6px 14px;border-radius:8px;font-size:0.85rem;font-weight:700;font-family:monospace;cursor:pointer;transition:all 0.2s}
+.promo-code:hover{background:rgba(240,192,64,0.25)}
+.promo-code:active{transform:scale(0.97)}
+
+/* FOOTER */
+footer{background:#13131e;border-top:1px solid #2a2a40;padding:3rem 2rem 1.5rem;margin-top:3rem}
+.footer-inner{max-width:1400px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand p{color:#8888aa;font-size:0.85rem;line-height:1.8;margin:0.8rem 0}
+.footer-social{display:flex;gap:8px;margin-top:1rem}
+.social-btn{background:#1a1a28;border:1px solid #2a2a40;color:#8888aa;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:0.9rem;transition:all 0.2s}
+.social-btn:hover{border-color:#f0c040;color:#f0c040}
+.footer-heading{font-size:0.9rem;font-weight:700;color:#e8e8f0;margin-bottom:1rem}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:#8888aa;text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-links a:hover{color:#f0c040}
+.footer-bottom{border-top:1px solid #2a2a40;padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.footer-bottom p{color:#8888aa;font-size:0.82rem}
+.payment-icons{display:flex;gap:6px}
+.pay-icon{background:#1a1a28;border:1px solid #2a2a40;padding:4px 10px;border-radius:6px;font-size:0.75rem;color:#8888aa;font-weight:600}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.hero{grid-template-columns:1fr;padding:2rem 1rem}
+.hero h1{font-size:2rem}
+.hero-img{display:none}
+.features-inner{grid-template-columns:1fr 1fr}
+nav .links{display:none}
+.footer-grid{grid-template-columns:1fr 1fr}
+.products-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.cart-sidebar{width:100%}
+}
+
+.page{display:none}
+.page.active{display:block}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h3>🛒 عربة التسوق</h3>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="empty-cart">
+      <span class="empty-cart-icon">🛒</span>
+      <p>عربتك فاضية</p>
+      <p style="font-size:0.82rem;margin-top:6px">ابدأ التسوق دلوقتي!</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-summary-row"><span>المجموع الفرعي</span><span id="subtotalVal">0 جنيه</span></div>
+    <div class="cart-summary-row"><span>الشحن</span><span style="color:#22c55e">مجاني 🎉</span></div>
+    <div class="cart-summary-row"><span>الضريبة (14%)</span><span id="taxVal">0 جنيه</span></div>
+    <div class="cart-total-row"><span>الإجمالي</span><span id="totalVal">0 جنيه</span></div>
+    <button class="checkout-btn" onclick="checkoutWhatsApp()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      اطلب عبر واتساب
+    </button>
+    <button class="continue-btn" onclick="toggleCart()">متابعة التسوق</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#" onclick="showPage('home')">
+      <div class="logo-icon">💻</div>
+      <div>
+        <div class="logo-text">LaptopEG</div>
+        <span class="logo-sub">أفضل أسعار اللابتوبات في مصر</span>
+      </div>
+    </a>
+    <div class="links">
+      <a href="#" class="active" onclick="showPage('home');setActiveLink(this)">الرئيسية</a>
+      <a href="#" onclick="showPage('products');setActiveLink(this)">المنتجات</a>
+      <a href="#" onclick="showPage('offers');setActiveLink(this)">العروض</a>
+      <a href="#" onclick="showPage('compare');setActiveLink(this)">مقارنة</a>
+      <a href="#" onclick="showPage('contact');setActiveLink(this)">تواصل معنا</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" onclick="toggleCart()">
+        🛒 العربة
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="whatsapp-nav" onclick="openWhatsApp('مرحباً! أريد الاستفسار عن اللابتوبات')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        واتساب
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-badge">🔥 أفضل أسعار في مصر 2025</div>
+      <h1>اشتري <span>لابتوبك</span> بأسعار<br>لا تتكرر</h1>
+      <p>أكبر مجموعة من اللابتوبات الأصلية بأفضل الأسعار — ضمان رسمي، توصيل سريع، ودعم فني على مدار الساعة</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">منتج متاح</div></div>
+        <div class="stat"><div class="stat-num">15K+</div><div class="stat-label">عميل سعيد</div></div>
+        <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">تقييم متوسط</div></div>
+        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">دعم فني</div></div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="hero-laptop-card">
+        <span class="featured-badge">⭐ الأكثر مبيعًا</span>
+        <span class="laptop-emoji">💻</span>
+        <div class="hero-laptop-name">MacBook Air M3</div>
+        <div class="hero-laptop-price">49,999 <span>جنيه</span></div>
+        <button class="add-cart" style="margin:12px auto 0;display:flex;justify-content:center" onclick="addToCart(0)">🛒 أضف للعربة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES BAR -->
+  <div class="features-bar">
+    <div class="features-inner">
+      <div class="feature"><span class="feature-icon">🚚</span><div class="feature-text"><div class="feature-title">توصيل مجاني</div><div class="feature-sub">لأي مكان في مصر</div></div></div>
+      <div class="feature"><span class="feature-icon">🛡️</span><div class="feature-text"><div class="feature-title">ضمان رسمي</div><div class="feature-sub">سنة إلى 3 سنوات</div></div></div>
+      <div class="feature"><span class="feature-icon">🔄</span><div class="feature-text"><div class="feature-title">إرجاع مجاني</div><div class="feature-sub">خلال 14 يوم</div></div></div>
+      <div class="feature"><span class="feature-icon">💳</span><div class="feature-text"><div class="feature-title">تقسيط بدون فوائد</div><div class="feature-sub">حتى 24 شهر</div></div></div>
+    </div>
+  </div>
+
+  <!-- PROMO BANNER -->
+  <section>
+    <div class="promo-banner">
+      <div><div class="promo-text">🎁 خصم <span>10%</span> على أول طلب — استخدم الكود</div><div style="font-size:0.8rem;color:#8888aa;margin-top:4px">صالح حتى نهاية الشهر</div></div>
+      <div class="promo-code" onclick="copyCode()" id="promoCode">LAPTOP10</div>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <div class="section-header">
+      <div class="section-title">أحدث اللابتوبات</div>
+      <button class="view-all" onclick="showPage('products');setActiveLink(document.querySelectorAll('nav .links a')[1])">عرض الكل</button>
+    </div>
+
+    <div class="filters" id="homeFilters">
+      <button class="filter-btn active" onclick="filterProducts('all',this)">الكل</button>
+      <button class="filter-btn" onclick="filterProducts('apple',this)">Apple</button>
+      <button class="filter-btn" onclick="filterProducts('dell',this)">Dell</button>
+      <button class="filter-btn" onclick="filterProducts('hp',this)">HP</button>
+      <button class="filter-btn" onclick="filterProducts('lenovo',this)">Lenovo</button>
+      <button class="filter-btn" onclick="filterProducts('asus',this)">ASUS</button>
+      <button class="filter-btn" onclick="filterProducts('gaming',this)">جيمنج 🎮</button>
+      <button class="filter-btn" onclick="filterProducts('business',this)">بيزنس 💼</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+</div>
+
+<!-- PRODUCTS PAGE -->
+<div class="page" id="page-products">
+  <section>
+    <div class="section-header">
+      <div class="section-title">جميع المنتجات</div>
+    </div>
+    <div class="search-container">
+      <input class="search-input" type="text" id="searchInput" placeholder="ابحث عن اللابتوب اللي بتدور عليه..." oninput="searchProducts()">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="brands-strip" id="brandsStrip"></div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterProducts('all',this)">الكل</button>
+      <button class="filter-btn" onclick="filterProducts('apple',this)">Apple</button>
+      <button class="filter-btn" onclick="filterProducts('dell',this)">Dell</button>
+      <button class="filter-btn" onclick="filterProducts('hp',this)">HP</button>
+      <button class="filter-btn" onclick="filterProducts('lenovo',this)">Lenovo</button>
+      <button class="filter-btn" onclick="filterProducts('asus',this)">ASUS</button>
+      <button class="filter-btn" onclick="filterProducts('gaming',this)">جيمنج 🎮</button>
+      <button class="filter-btn" onclick="filterProducts('business',this)">بيزنس 💼</button>
+      <button class="filter-btn" onclick="sortByPrice('asc',this)">⬆ الأرخص أولاً</button>
+      <button class="filter-btn" onclick="sortByPrice('desc',this)">⬇ الأغلى أولاً</button>
+    </div>
+    <div class="products-grid" id="allProductsGrid"></div>
+  </section>
+</div>
+
+<!-- OFFERS PAGE -->
+<div class="page" id="page-offers">
+  <section>
+    <div class="section-header">
+      <div class="section-title">🔥 العروض الحصرية</div>
+    </div>
+    <div class="promo-banner" style="margin-bottom:1.5rem">
+      <div class="promo-text">⚡ عروض محدودة المدة — احجز قبل ما تخلص!</div>
+    </div>
+    <div class="products-grid" id="offersGrid"></div>
+  </section>
+</div>
+
+<!-- COMPARE PAGE -->
+<div class="page" id="page-compare">
+  <section>
+    <div class="section-header">
+      <div class="section-title">⚖️ مقارنة اللابتوبات</div>
+    </div>
+    <p style="color:#8888aa;margin-bottom:1.5rem">اختار لحد 3 لابتوبات من الصفحة الرئيسية أو من قائمة المنتجات للمقارنة بينهم</p>
+    <div id="compareGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem"></div>
+    <div id="compareTable" style="margin-top:2rem;overflow-x:auto"></div>
+  </section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <section>
+    <div class="section-header">
+      <div class="section-title">📞 تواصل معنا</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px">
+      <div style="background:#13131e;border:1px solid #2a2a40;border-radius:16px;padding:1.5rem">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1rem">📱 تواصل مباشر</h3>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button onclick="openWhatsApp('مرحباً! أريد الاستفسار')" style="background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:none;padding:12px;border-radius:12px;cursor:pointer;font-family:Cairo,sans-serif;font-size:0.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            واتساب — 01000000000
+          </button>
+          <a href="tel:01000000000" style="background:#13131e;border:1px solid #2a2a40;color:#e8e8f0;padding:12px;border-radius:12px;text-decoration:none;font-family:Cairo,sans-serif;font-size:0.9rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px">📞 01000000000</a>
+          <a href="mailto:info@laptopeg.com" style="background:#13131e;border:1px solid #2a2a40;color:#e8e8f0;padding:12px;border-radius:12px;text-decoration:none;font-family:Cairo,sans-serif;font-size:0.9rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px">📧 info@laptopeg.com</a>
+        </div>
+      </div>
+      <div style="background:#13131e;border:1px solid #2a2a40;border-radius:16px;padding:1.5rem">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1rem">🕐 ساعات العمل</h3>
+        <table style="width:100%;font-size:0.88rem;border-collapse:collapse">
+          <tr><td style="padding:8px 0;color:#8888aa">السبت — الخميس</td><td style="text-align:left;padding:8px 0;color:#22c55e;font-weight:600">10:00 ص — 10:00 م</td></tr>
+          <tr style="border-top:1px solid #2a2a40"><td style="padding:8px 0;color:#8888aa">الجمعة</td><td style="text-align:left;padding:8px 0;color:#f59e0b;font-weight:600">2:00 م — 10:00 م</td></tr>
+          <tr style="border-top:1px solid #2a2a40"><td style="padding:8px 0;color:#8888aa">واتساب</td><td style="text-align:left;padding:8px 0;color:#22c55e;font-weight:600">24/7 🟢</td></tr>
+        </table>
+        <div style="margin-top:1rem;padding:10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;font-size:0.82rem;color:#4ade80;text-align:center">
+          🟢 متاحين دلوقتي — رد خلال دقيقتين
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.8rem">
+          <div style="width:36px;height:36px;background:linear-gradient(135deg,#f0c040,#e8a820);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px">💻</div>
+          <span style="font-size:1.2rem;font-weight:800;color:#f0c040">LaptopEG</span>
+        </div>
+        <p>أكبر متجر لابتوبات في مصر — أسعار حقيقية، منتجات أصلية، وخدمة على مستوى عالمي</p>
+        <div class="footer-social">
+          <a class="social-btn" href="#">f</a>
+          <a class="social-btn" href="#">in</a>
+          <a class="social-btn" href="#">tw</a>
+          <a class="social-btn" href="#">ig</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">روابط سريعة</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">الرئيسية</a></li>
+          <li><a href="#" onclick="showPage('products')">جميع المنتجات</a></li>
+          <li><a href="#" onclick="showPage('offers')">العروض</a></li>
+          <li><a href="#" onclick="showPage('compare')">مقارنة اللابتوبات</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">خدمة العملاء</div>
+        <ul class="footer-links">
+          <li><a href="#">سياسة الإرجاع</a></li>
+          <li><a href="#">الضمان</a></li>
+          <li><a href="#">التوصيل والشحن</a></li>
+          <li><a href="#">الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">تواصل معنا</div>
+        <ul class="footer-links">
+          <li><a href="#">📱 01000000000</a></li>
+          <li><a href="#">📧 info@laptopeg.com</a></li>
+          <li><a href="#">📍 القاهرة، مصر</a></li>
+          <li><a href="#" onclick="openWhatsApp('مرحباً')">💬 واتساب</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LaptopEG — جميع الحقوق محفوظة</p>
+      <div class="payment-icons">
+        <span class="pay-icon">Visa</span>
+        <span class="pay-icon">Mastercard</span>
+        <span class="pay-icon">فوري</span>
+        <span class="pay-icon">Vodafone Cash</span>
+        <span class="pay-icon">كاش</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const WHATSAPP_NUMBER = '201000000000';
+
+const products = [
+  {id:0,brand:'Apple',name:'MacBook Air 13" M3',emoji:'💻',price:49999,oldPrice:55000,ram:'8GB',storage:'256GB SSD',screen:'13.6"',cpu:'Apple M3',gpu:'10-core GPU',weight:'1.24kg',battery:'18hrs',category:'apple',tags:['new','best'],rating:4.9,reviews:342,stock:'متاح',color:'#555'},
+  {id:1,brand:'Apple',name:'MacBook Air 15" M3',emoji:'💻',price:64999,oldPrice:70000,ram:'8GB',storage:'512GB SSD',screen:'15.3"',cpu:'Apple M3',gpu:'10-core GPU',weight:'1.51kg',battery:'18hrs',category:'apple',tags:['new'],rating:4.8,reviews:210,stock:'متاح',color:'#888'},
+  {id:2,brand:'Apple',name:'MacBook Pro 14" M4',emoji:'💻',price:89999,oldPrice:null,ram:'24GB',storage:'512GB SSD',screen:'14.2"',cpu:'Apple M4 Pro',gpu:'20-core GPU',weight:'1.61kg',battery:'24hrs',category:'apple',tags:['hot'],rating:5.0,reviews:89,stock:'كميات محدودة',color:'#c0c0c0'},
+  {id:3,brand:'Dell',name:'Dell XPS 15 (2024)',emoji:'💻',price:55000,oldPrice:62000,ram:'16GB',storage:'512GB SSD',screen:'15.6" OLED',cpu:'Intel Core i7-13700H',gpu:'NVIDIA RTX 4060',weight:'1.86kg',battery:'13hrs',category:'dell',tags:['sale'],rating:4.7,reviews:186,stock:'متاح',color:'#1a1a1a'},
+  {id:4,brand:'Dell',name:'Dell Inspiron 15',emoji:'💻',price:18500,oldPrice:21000,ram:'8GB',storage:'256GB SSD',screen:'15.6" FHD',cpu:'Intel Core i5-1235U',gpu:'Intel Iris Xe',weight:'1.8kg',battery:'8hrs',category:'dell',tags:['sale'],rating:4.3,reviews:412,stock:'متاح',color:'#e8e8e8'},
+  {id:5,brand:'HP',name:'HP Spectre x360 14',emoji:'💻',price:47000,oldPrice:52000,ram:'16GB',storage:'512GB SSD',screen:'14" OLED Touch',cpu:'Intel Core Ultra 7',gpu:'Intel Arc',weight:'1.56kg',battery:'17hrs',category:'hp',tags:['new'],rating:4.6,reviews:156,stock:'متاح',color:'#111827'},
+  {id:6,brand:'HP',name:'HP Victus 15 Gaming',emoji:'🎮',price:28999,oldPrice:34000,ram:'16GB',storage:'512GB SSD',screen:'15.6" 144Hz',cpu:'AMD Ryzen 5 7535HS',gpu:'NVIDIA RTX 4060',weight:'2.29kg',battery:'6hrs',category:'gaming',tags:['hot','sale'],rating:4.5,reviews:298,stock:'متاح',color:'#1a0a0a'},
+  {id:7,brand:'Lenovo',name:'ThinkPad X1 Carbon',emoji:'💼',price:56000,oldPrice:63000,ram:'16GB',storage:'512GB SSD',screen:'14" IPS',cpu:'Intel Core i7-1365U',gpu:'Intel Iris Xe',weight:'1.12kg',battery:'15hrs',category:'business',tags:['best'],rating:4.8,reviews:234,stock:'متاح',color:'#0a0a0a'},
+  {id:8,brand:'Lenovo',name:'IdeaPad Gaming 3',emoji:'🎮',price:22999,oldPrice:27000,ram:'8GB',storage:'512GB SSD',screen:'15.6" 120Hz',cpu:'AMD Ryzen 5 6600H',gpu:'NVIDIA RTX 3050',weight:'2.2kg',battery:'7hrs',category:'gaming',tags:['sale'],rating:4.2,reviews:567,stock:'متاح',color:'#1a1a2e'},
+  {id:9,brand:'ASUS',name:'ROG Strix G16 (2024)',emoji:'🎮',price:62000,oldPrice:68000,ram:'16GB',storage:'1TB SSD',screen:'16" 240Hz QHD',cpu:'Intel Core i9-14900HX',gpu:'NVIDIA RTX 4070',weight:'2.5kg',battery:'4hrs',category:'gaming',tags:['hot'],rating:4.9,reviews:178,stock:'كميات محدودة',color:'#0d0d0d'},
+  {id:10,brand:'ASUS',name:'ZenBook 14 OLED',emoji:'💻',price:32000,oldPrice:38000,ram:'16GB',storage:'512GB SSD',screen:'14" OLED 2.8K',cpu:'Intel Core Ultra 5',gpu:'Intel Arc',weight:'1.2kg',battery:'10hrs',category:'asus',tags:['new','sale'],rating:4.7,reviews:143,stock:'متاح',color:'#2d2d2d'},
+  {id:11,brand:'MSI',name:'MSI Titan GT77 HX',emoji:'🎮',price:95000,oldPrice:null,ram:'32GB',storage:'2TB SSD',screen:'17.3" 4K 144Hz',cpu:'Intel Core i9-13980HX',gpu:'NVIDIA RTX 4090',weight:'3.3kg',battery:'3hrs',category:'gaming',tags:['hot'],rating:4.8,reviews:67,stock:'كميات محدودة',color:'#0a0a0a'},
+  {id:12,brand:'Lenovo',name:'Legion Pro 5i Gen 9',emoji:'🎮',price:48000,oldPrice:54000,ram:'16GB',storage:'1TB SSD',screen:'16" 165Hz',cpu:'Intel Core i7-14700HX',gpu:'NVIDIA RTX 4060',weight:'2.4kg',battery:'5hrs',category:'gaming',tags:['new'],rating:4.6,reviews:89,stock:'متاح',color:'#1a0a2e'},
+  {id:13,brand:'HP',name:'HP EliteBook 840 G10',emoji:'💼',price:38000,oldPrice:43000,ram:'16GB',storage:'512GB SSD',screen:'14" IPS',cpu:'Intel Core i7-1355U',gpu:'Intel Iris Xe',weight:'1.35kg',battery:'12hrs',category:'business',tags:['best'],rating:4.7,reviews:201,stock:'متاح',color:'#1a1a1a'},
+  {id:14,brand:'Dell',name:'Dell Alienware m16',emoji:'🎮',price:78000,oldPrice:85000,ram:'32GB',storage:'1TB SSD',screen:'16" 165Hz QHD',cpu:'Intel Core i9-13900HX',gpu:'NVIDIA RTX 4080',weight:'3.04kg',battery:'4hrs',category:'gaming',tags:['hot'],rating:4.9,reviews:112,stock:'كميات محدودة',color:'#0a0f1a'},
+  {id:15,brand:'ASUS',name:'ASUS VivoBook 15',emoji:'💻',price:15999,oldPrice:19000,ram:'8GB',storage:'512GB SSD',screen:'15.6" FHD',cpu:'AMD Ryzen 5 7520U',gpu:'AMD Radeon',weight:'1.7kg',battery:'9hrs',category:'asus',tags:['sale'],rating:4.1,reviews:678,stock:'متاح',color:'#e8f0e8'}
+];
+
+let cart = [];
+let compareList = [];
+let currentFilter = 'all';
+
+function renderProducts(list, gridId){
+  const grid = document.getElementById(gridId);
+  if(!grid)return;
+  grid.innerHTML = list.map(p=>{
+    const badgeHTML = p.tags.map(t=>{
+      const map={new:'badge-new جديد',hot:'badge-hot 🔥 رائج',sale:'badge-sale خصم',best:'badge-best الأكثر مبيعًا'};
+      const v=map[t]||'';const parts=v.split(' ');const cls=parts[0];const label=parts.slice(1).join(' ');
+      return `<span class="badge ${cls}">${label}</span>`;
+    }).join('');
+    const oldPriceHTML = p.oldPrice ? `<div class="old-price">${p.oldPrice.toLocaleString()} جنيه</div>`:'';
+    const discount = p.oldPrice ? Math.round((1-p.price/p.oldPrice)*100):'';
+    const discountBadge = p.oldPrice ? `<span class="badge badge-sale">-${discount}%</span>`:'';
+    const stockClass = p.stock==='متاح'?'in-stock':p.stock==='كميات محدودة'?'low-stock':'out-stock';
+    return `<div class="product-card" onclick="">
+      <div class="card-img">
+        ${p.emoji==='🎮'?'<span style="font-size:4rem">🎮</span>':'<span style="font-size:4rem">💻</span>'}
+        <div class="card-badges">${badgeHTML}${discountBadge}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">${p.brand}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="rating"><span class="stars">★★★★★</span><span class="rating-num">${p.rating} (${p.reviews})</span></div>
+        <div class="card-specs">
+          <span class="spec-tag">${p.cpu.split(' ').slice(0,3).join(' ')}</span>
+          <span class="spec-tag">${p.ram}</span>
+          <span class="spec-tag">${p.storage}</span>
+          <span class="spec-tag">${p.screen}</span>
+        </div>
+        <span class="stock-status ${stockClass}">● ${p.stock}</span>
+        <div class="card-footer">
+          <div class="price-box">${oldPriceHTML}<div class="new-price">${p.price.toLocaleString()} <span class="currency">جنيه</span></div></div>
+          <button class="add-cart" id="addBtn_${gridId}_${p.id}" onclick="addToCart(${p.id},this)">🛒 أضف</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterProducts(cat, btn){
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const list = cat==='all' ? products : products.filter(p=>p.category===cat||p.tags.includes(cat));
+  renderProducts(list, 'productsGrid');
+  renderProducts(list, 'allProductsGrid');
+}
+
+function sortByPrice(dir, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const sorted = [...products].sort((a,b)=>dir==='asc'?a.price-b.price:b.price-a.price);
+  renderProducts(sorted, 'allProductsGrid');
+}
+
+function searchProducts(){
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = products.filter(p=>
+    p.name.toLowerCase().includes(q)||
+    p.brand.toLowerCase().includes(q)||
+    p.cpu.toLowerCase().includes(q)||
+    p.ram.toLowerCase().includes(q)
+  );
+  renderProducts(filtered, 'allProductsGrid');
+}
+
+function addToCart(id, btn){
+  const p = products[id];
+  const existing = cart.find(i=>i.id===id);
+  if(existing) existing.qty++;
+  else cart.push({...p, qty:1});
+  updateCartUI();
+  showToast(`✅ تم إضافة ${p.name} للعربة`);
+  if(btn){btn.textContent='✓ أُضيف';btn.classList.add('added');setTimeout(()=>{btn.textContent='🛒 أضف';btn.classList.remove('added')},2000);}
+}
+
+function removeFromCart(id){
+  cart = cart.filter(i=>i.id!==id);
+  updateCartUI();
+}
+
+function changeQty(id, delta){
+  const item = cart.find(i=>i.id===id);
+  if(!item)return;
+  item.qty += delta;
+  if(item.qty<=0) removeFromCart(id);
+  else updateCartUI();
+}
+
+function updateCartUI(){
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').textContent = count;
+  const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const tax = Math.round(subtotal*0.14);
+  const total = subtotal + tax;
+  const el = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if(cart.length===0){
+    el.innerHTML=`<div class="empty-cart"><span class="empty-cart-icon">🛒</span><p>عربتك فاضية</p><p style="font-size:0.82rem;margin-top:6px">ابدأ التسوق دلوقتي!</p></div>`;
+    footer.style.display='none';
+    return;
+  }
+  footer.style.display='block';
+  el.innerHTML = cart.map(i=>`
+    <div class="cart-item">
+      <div class="cart-item-emoji">${i.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-brand">${i.brand}</div>
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-price">${(i.price*i.qty).toLocaleString()} جنيه</div>
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeFromCart(${i.id})">✕</button>
+    </div>
+  `).join('');
+  document.getElementById('subtotalVal').textContent = subtotal.toLocaleString()+' جنيه';
+  document.getElementById('taxVal').textContent = tax.toLocaleString()+' جنيه';
+  document.getElementById('totalVal').textContent = total.toLocaleString()+' جنيه';
+}
+
+function checkoutWhatsApp(){
+  if(cart.length===0)return;
+  const items = cart.map(i=>`• ${i.name} × ${i.qty} — ${(i.price*i.qty).toLocaleString()} جنيه`).join('\n');
+  const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const total = subtotal + Math.round(subtotal*0.14);
+  const msg = `🛒 *طلب جديد من LaptopEG*\n\n${items}\n\n💰 الإجمالي: ${total.toLocaleString()} جنيه (شامل الضريبة)\n🚚 التوصيل مجاني\n\nأرجو التواصل لإتمام الطلب 🙏`;
+  openWhatsApp(msg);
+}
+
+function openWhatsApp(msg){
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function toggleCart(){
+  document.getElementById('cartSidebar').classList.toggle('open');
+  document.getElementById('cartOverlay').classList.toggle('open');
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function copyCode(){
+  navigator.clipboard.writeText('LAPTOP10').catch(()=>{});
+  showToast('✅ تم نسخ الكود: LAPTOP10');
+  document.getElementById('promoCode').textContent = '✓ تم النسخ!';
+  setTimeout(()=>document.getElementById('promoCode').textContent='LAPTOP10', 2000);
+}
+
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(name==='products'){
+    renderProducts(products, 'allProductsGrid');
+    renderBrands();
+  }
+  if(name==='offers'){
+    const offers = products.filter(p=>p.oldPrice);
+    renderProducts(offers, 'offersGrid');
+  }
+  if(name==='compare') renderCompare();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setActiveLink(el){
+  document.querySelectorAll('nav .links a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function renderBrands(){
+  const brands = [...new Set(products.map(p=>p.brand))];
+  document.getElementById('brandsStrip').innerHTML = brands.map(b=>
+    `<div class="brand-card" onclick="filterByBrand('${b}',this)">${b}</div>`
+  ).join('');
+}
+
+function filterByBrand(brand, el){
+  document.querySelectorAll('.brand-card').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  filterProducts(brand.toLowerCase(), null);
+}
+
+function renderCompare(){
+  const grid = document.getElementById('compareGrid');
+  const toAdd = products.slice(0,3);
+  grid.innerHTML = `<p style="color:#8888aa;grid-column:1/-1">يمكنك مقارنة المنتجات التالية:</p>`+
+  toAdd.map(p=>`
+    <div style="background:#13131e;border:1px solid #2a2a40;border-radius:14px;padding:1.2rem">
+      <div style="font-size:2.5rem;text-align:center;margin-bottom:0.8rem">💻</div>
+      <div style="font-size:0.75rem;color:#8888aa;font-weight:600">${p.brand}</div>
+      <div style="font-weight:700;margin-bottom:0.5rem">${p.name}</div>
+      <div style="font-size:1.1rem;font-weight:800;color:#f0c040;margin-bottom:0.8rem">${p.price.toLocaleString()} جنيه</div>
+    </div>
+  `).join('');
+
+  const table = document.getElementById('compareTable');
+  const specs=[
+    ['المعالج','cpu'],['الرام','ram'],['التخزين','storage'],['الشاشة','screen'],['كرت الشاشة','gpu'],
+    ['الوزن','weight'],['البطارية','battery'],['التقييم','rating']
+  ];
+  table.innerHTML=`
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem">
+      <thead>
+        <tr style="background:#1a1a28">
+          <th style="padding:12px;text-align:right;border:1px solid #2a2a40;color:#8888aa">المواصفة</th>
+          ${toAdd.map(p=>`<th style="padding:12px;border:1px solid #2a2a40;color:#f0c040">${p.name.split('"')[0]}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        ${specs.map(([label,key],i)=>`
+          <tr style="background:${i%2===0?'#13131e':'#1a1a28'}">
+            <td style="padding:10px 12px;border:1px solid #2a2a40;color:#8888aa;font-weight:600">${label}</td>
+            ${toAdd.map(p=>`<td style="padding:10px 12px;border:1px solid #2a2a40;text-align:center">${p[key]}</td>`).join('')}
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+// INIT
+renderProducts(products, 'productsGrid');
+renderProducts(products, 'allProductsGrid');
+</script>
+</body>
+</html>
